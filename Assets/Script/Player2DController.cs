@@ -19,18 +19,20 @@ public class Player2DController : MonoBehaviour
     {
         if (Keyboard.current != null)
         {
-            _moveInputValue = (Keyboard.current.dKey.isPressed ? 1 : 0) 
+            _moveInputValue = (Keyboard.current.dKey.isPressed ? 1 : 0)
                 - (Keyboard.current.aKey.isPressed ? 1 : 0);
         }
-        _rb.linearVelocity = new Vector2(_moveInputValue * speed, _rb.linearVelocity.y); 
+        _rb.linearVelocity = new Vector2(_moveInputValue * speed, _rb.linearVelocity.y);
 
         if (_moveInputValue < 0) { _spriteRenderer.flipX = true; }
         else if (_moveInputValue > 0) { _spriteRenderer.flipX = false; }
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && _isGrounded) 
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && _isGrounded)
         {
-            _rb.AddForce(new Vector2(_rb.linearVelocity.x, jumpForce)); 
+            _rb.AddForce(new Vector2(_rb.linearVelocity.x, jumpForce));
+        }
     }
+        
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
